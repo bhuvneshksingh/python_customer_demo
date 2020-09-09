@@ -2,16 +2,24 @@
 Install and run:
 # Move to previous folder
 cd ..
-# Create environment and run below commands
+# Create environment and run below commands and activate the environment to run the app
 python -m venv env
+
 pip install -r requirements.txt
+
 cd env
+
 cd scripts
+
 activate
+
 # Move to Customer API folder
 cd ..
+
 cd ..
+
 cd CustomerAPI
+
 manage.py runserver
 
 
