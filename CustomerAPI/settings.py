@@ -26,7 +26,7 @@ SECRET_KEY = '17(#k_#py!+f$kc8qyc@f3%%$-3zp=6#@a5m44%f#&j7on=4t='
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['cutomerdemo.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['whydonatecustomerdemo.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
@@ -76,7 +76,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'django.core.context_processors.csrf',
+                'django.template.context_processors.csrf',
             ],
         },
     },
