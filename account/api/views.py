@@ -22,10 +22,12 @@ def CustomerListView(request):
 @api_view(['GET'])
 @csrf_exempt
 def CustomerDetailView(request, id):
-	
-	customers = Customer.objects.get(id=id)
-	serializer = CustomerSerializer(customers, many=False)
-	return Response(serializer.data)
+	try:
+		customers = Customer.objects.get(id=id)
+		serializer = CustomerSerializer(customers, many=False)
+		return Response(serializer.data)
+	except Customer.DoesNotExist:
+		return Response({'Response':'Customer Not exist'})
 
 @api_view(['POST'])
 @csrf_exempt
@@ -40,19 +42,24 @@ def CustomerCreateView(request):
 @api_view(['PUT'])
 @csrf_exempt
 def CustomerUpdateView(request, id):
-	
-	customer = Customer.objects.get(id=id)
-	serializer = CustomerSerializer(instance=customer, data=request.data)
-	if serializer.is_valid():
-		serializer.save()
-		return Response(serializer.data, status=status.HTTP_201_CREATED)
-	return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+	try:
+		customer = Customer.objects.get(id=id)
+		serializer = CustomerSerializer(instance=customer, data=request.data)
+		if serializer.is_valid():
+			serializer.save()
+			return Response(serializer.data, status=status.HTTP_201_CREATED)
+		return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+	except Customer.DoesNotExist:
+		return Response({'Response':'Customer Not exist'})
+
 
 @api_view(['DELETE'])
 @csrf_exempt
 def CustomerDeleteView(request, id):
-	
-	customer = Customer.objects.get(id=id)
-	customer.delete()
+	try:
+		customer = Customer.objects.get(id=id)
+		customer.delete()
 
-	return Response('Item Successfully Deleted!')
+		return Response('Item Successfully Deleted!')
+	except Customer.DoesNotExist:
+		return Response({'Response':'Customer Not exist'})

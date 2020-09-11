@@ -1,1 +1,1 @@
-web: gunicorn Customer_API.wsgi
+web: gunicorn CustomerAPI.wsgi
